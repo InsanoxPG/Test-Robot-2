@@ -22,6 +22,7 @@ public class Pivot extends SubsystemBase {
   // Initialize motors, pivot related stuff
   TalonFX pivotMotor;
   TalonFXConfiguration config;
+  TalonFXConfigurator configurator;
 
   public Pivot() {
     pivotMotor = new TalonFX(Constants.PivotConstants.kPivotMotorPort);
@@ -35,6 +36,8 @@ public class Pivot extends SubsystemBase {
     // motor brakes when doing nothing, also inverted
     config.MotorOutput.withInverted(InvertedValue.CounterClockwise_Positive);
     config.MotorOutput.withNeutralMode(NeutralModeValue.Brake);
+
+    pivotMotor.getConfigurator().apply(config);
     /* also don't remember this
     configs.apply(pidConfigs);
     configs.apply(softLimits);
