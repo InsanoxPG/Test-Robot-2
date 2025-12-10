@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.SoftwareLimitSwitchConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfigurator;
 import com.ctre.phoenix6.controls.ControlRequest;
 import com.ctre.phoenix6.controls.PositionVoltage;
 // Import TalonFX class
@@ -19,6 +20,7 @@ public class Pivot extends SubsystemBase {
   TalonFX pivotMotor;
   Slot0Configs pidConfigs;
   SoftwareLimitSwitchConfigs softLimits;
+  TalonFXConfigurator configs;
 
   public Pivot() {
     pivotMotor = new TalonFX(Constants.PivotConstants.kPivotMotorPort);
@@ -29,6 +31,11 @@ public class Pivot extends SubsystemBase {
     softLimits.withReverseSoftLimitEnable(true);
     softLimits.withForwardSoftLimitThreshold(Constants.PivotConstants.kPivotMotorForwardSoftLimit);
     softLimits.withReverseSoftLimitThreshold(Constants.PivotConstants.kPivotMotorReverseSoftLimit);
+    /* also don't remember this
+    configs.apply(pidConfigs);
+    configs.apply(softLimits);
+    */
+    
 
   }
 /*  I don't remember how to do ts
