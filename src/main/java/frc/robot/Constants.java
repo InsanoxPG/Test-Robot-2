@@ -16,4 +16,11 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
+  public static class PivotConstants {
+    public static final int kPivotMotorPort = 0;                    // pivot motor port
+    public static final double kPivotMotorP = 0.4;                  // pivot motor proportional gain
+    public static final double kPivotMotorForwardSoftLimit = 10;
+    public static final double kPivotMotorReverseSoftLimit = -0.1;
+  }
 }
