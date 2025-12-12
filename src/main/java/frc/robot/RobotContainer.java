@@ -53,13 +53,8 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureBindings() {
-    /* new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem)); */
-
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    // m_driverController.a().onTrue(m_Pivot.exampleMethodCommand());
+  private void configureBindings() {  
+    m_driverController.a().onTrue(m_Pivot.pivotTo(5.0));
   }
 
   /**

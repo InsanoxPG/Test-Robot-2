@@ -15,6 +15,7 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -26,6 +27,8 @@ public class Pivot extends SubsystemBase {
 
   public Pivot() {
     pivotMotor = new TalonFX(Constants.PivotConstants.kPivotMotorPort);
+    config = new TalonFXConfiguration();
+    configurator = pivotMotor.getConfigurator();
     // proportional gain for pid controller
     config.Slot0.withKP(Constants.PivotConstants.kPivotMotorP);
     // soft limit so robot don't break
@@ -37,19 +40,13 @@ public class Pivot extends SubsystemBase {
     config.MotorOutput.withInverted(InvertedValue.CounterClockwise_Positive);
     config.MotorOutput.withNeutralMode(NeutralModeValue.Brake);
 
-    pivotMotor.getConfigurator().apply(config);
-    /* also don't remember this
-    configs.apply(pidConfigs);
-    configs.apply(softLimits);
-    */
-    
+    configurator.apply(config);
+  }
 
-  }
-/*  I don't remember how to do ts
   public Command pivotTo(double pos) {
-    pivotMotor.setControl();
+    return new InstantCommand(() -> pivotMotor.setControl(new PositionVoltage(pos)));
   }
-*/
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
